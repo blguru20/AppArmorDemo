@@ -19,10 +19,10 @@ jobs:
           sudo useradd -m runneruser
           sudo chown -R runneruser:runneruser $GITHUB_WORKSPACE
 
-      - name: Grant permissions to executable
-        run: |
-          chmod +x ./your_executable  # Replace with the actual executable name
-          ls -l ./your_executable  # Verify permissions
+     # - name: Grant permissions to executable
+     #  run: |
+     #     chmod +x ./your_executable  # Replace with the actual executable name
+     #     ls -l ./your_executable  # Verify permissions
 
       - name: Run the executable as non-root user
         run: sudo -u runneruser ls
