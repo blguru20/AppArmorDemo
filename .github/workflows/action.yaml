@@ -1,1 +1,29 @@
+name: Run Executable as Non-Root User
+
+on:
+  push:
+    branches:
+      - main  # Change this if needed
+  pull_request:
+
+jobs:
+  run-executable:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create non-root user
+        run: |
+          sudo useradd -m runneruser
+          sudo chown -R runneruser:runneruser $GITHUB_WORKSPACE
+
+      - name: Grant permissions to executable
+        run: |
+          chmod +x ./your_executable  # Replace with the actual executable name
+          ls -l ./your_executable  # Verify permissions
+
+      - name: Run the executable as non-root user
+        run: sudo -u runneruser ls
 
